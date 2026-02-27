@@ -31,6 +31,7 @@
     "@tsconfig/node24": "^24.0.4",
     "@types/jest": "^30.0.0",
     "@types/node": "^25.3.2",
+    "@types/pg": "^8.16.0",
     "eslint": "^10.0.2",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-jest": "^29.15.0",
@@ -38,6 +39,7 @@
     "globals": "^17.3.0",
     "jest": "^30.2.0",
     "prettier": "^3.8.1",
+    "prisma": "^7.4.2",
     "ts-jest": "^29.4.6",
     "ts-node": "^10.9.2",
     "tsx": "^4.21.0",
@@ -46,5 +48,11 @@
   },
   "overrides": {
     "eslint": "^10.0.2"
+  },
+  "dependencies": {
+    "@prisma/adapter-pg": "^7.4.2",
+    "@prisma/client": "^7.4.2",
+    "dotenv": "^17.3.1",
+    "pg": "^8.19.0"
   }
 }
