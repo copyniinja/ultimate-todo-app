@@ -5,7 +5,11 @@
     "rootDir": ".",
     "forceConsistentCasingInFileNames": true,
     "experimentalDecorators": true,
-    "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@errors/*": ["src/errors/*"]
+    }
   },
   "include": ["src", "tests"],
   "exclude": ["node_modules", "dist"],

@@ -24,7 +24,8 @@
     "typecheck": "tsc --noEmit",
     "test": "jest --coverage",
     "test:watch": "jest --watch",
-    "audit:prod": "npm audit --omit=dev"
+    "audit:prod": "npm audit --omit=dev",
+    "check": "npm run lint:fix && npm run format && npm run db:format && npm run typecheck"
   },
   "repository": {
     "type": "git"
