@@ -5,4 +5,4 @@ drizzle/
 dist/
 *.log
 package-lock.json
-prisma/
+./prisma
