@@ -23,3 +23,28 @@
 {"level":"info","message":"Incoming request","method":"GET","params":{},"query":{},"timestamp":"2026-03-01T20:05:48.128Z","url":"/health","user":null,"userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"}
 {"duration":"6ms","level":"info","message":"Response sent","method":"GET","status":200,"timestamp":"2026-03-01T20:05:48.134Z","url":"/health"}
 {"level":"info","message":"SIGINT received. Shutting down...","timestamp":"2026-03-01T20:06:28.145Z"}
+{"level":"info","message":"Prisma connected","timestamp":"2026-03-01T20:53:32.493Z"}
+{"level":"info","message":"Server running on port:3000","timestamp":"2026-03-01T20:53:32.502Z"}
+{"level":"info","message":"Incoming request","method":"GET","params":{},"query":{},"timestamp":"2026-03-01T20:53:43.755Z","url":"/health","user":null,"userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"}
+{"duration":"6ms","level":"info","message":"Response sent","method":"GET","status":200,"timestamp":"2026-03-01T20:53:43.760Z","url":"/health"}
+{"level":"info","message":"SIGINT received. Shutting down...","timestamp":"2026-03-01T20:53:50.945Z"}
+{"level":"info","message":"Prisma connected","timestamp":"2026-03-01T20:53:40.965Z"}
+{"level":"info","message":"Server running on port:3000","timestamp":"2026-03-01T20:53:40.976Z"}
+{"level":"info","message":"Incoming request","method":"GET","params":{},"query":{},"timestamp":"2026-03-01T20:54:35.147Z","url":"/health","user":null,"userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"}
+{"duration":"7ms","level":"info","message":"Response sent","method":"GET","status":200,"timestamp":"2026-03-01T20:54:35.154Z","url":"/health"}
+{"level":"info","message":"Incoming request","method":"GET","params":{},"query":{},"timestamp":"2026-03-01T20:54:35.579Z","url":"/health","user":null,"userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"}
+{"duration":"1ms","level":"info","message":"Response sent","method":"GET","status":200,"timestamp":"2026-03-01T20:54:35.580Z","url":"/health"}
+{"level":"info","message":"Incoming request","method":"GET","params":{},"query":{},"timestamp":"2026-03-01T20:54:35.979Z","url":"/health","user":null,"userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"}
+{"duration":"1ms","level":"info","message":"Response sent","method":"GET","status":200,"timestamp":"2026-03-01T20:54:35.980Z","url":"/health"}
+{"level":"info","message":"SIGINT received. Shutting down...","timestamp":"2026-03-01T20:54:38.912Z"}
+{"level":"info","message":"Prisma connected","timestamp":"2026-03-01T20:56:17.484Z"}
+{"level":"info","message":"Server running on port:3000","timestamp":"2026-03-01T20:56:17.492Z"}
+{"level":"info","message":"SIGINT received. Shutting down...","timestamp":"2026-03-01T20:56:19.967Z"}
+{"level":"info","message":"Prisma connected","timestamp":"2026-03-01T21:01:12.538Z"}
+{"level":"info","message":"Server running on port:3000","timestamp":"2026-03-01T21:01:12.548Z"}
+{"level":"info","message":"Incoming request","method":"GET","params":{},"query":{},"timestamp":"2026-03-01T21:01:20.297Z","url":"/health","user":null,"userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"}
+{"duration":"12ms","level":"info","message":"Response sent","method":"GET","status":200,"timestamp":"2026-03-01T21:01:20.306Z","url":"/health"}
+{"level":"info","message":"Incoming request","method":"GET","params":{},"query":{},"timestamp":"2026-03-01T21:01:21.318Z","url":"/","user":null,"userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"}
+{"level":"info","message":"Incoming request","method":"GET","params":{},"query":{},"timestamp":"2026-03-01T21:01:24.127Z","url":"/health","user":null,"userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"}
+{"duration":"1ms","level":"info","message":"Response sent","method":"GET","status":200,"timestamp":"2026-03-01T21:01:24.128Z","url":"/health"}
+{"level":"info","message":"SIGINT received. Shutting down...","timestamp":"2026-03-01T21:02:04.812Z"}
