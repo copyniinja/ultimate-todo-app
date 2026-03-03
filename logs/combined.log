@@ -101,3 +101,15 @@
 {"level":"info","message":"Server running on port:3000","timestamp":"2026-03-03T02:59:47.052Z"}
 {"level":"info","message":"Incoming request","method":"OPTIONS","params":{},"query":{},"timestamp":"2026-03-03T02:59:53.235Z","url":"/health","user":null,"userAgent":"curl/8.5.0"}
 {"level":"info","message":"SIGINT received. Shutting down...","timestamp":"2026-03-03T03:00:05.092Z"}
+{"level":"info","message":"Prisma connected","timestamp":"2026-03-03T03:25:51.554Z"}
+{"level":"info","message":"Server running on port:3000","timestamp":"2026-03-03T03:25:51.565Z"}
+{"level":"info","message":"Incoming request","method":"GET","params":{},"query":{},"timestamp":"2026-03-03T03:25:55.826Z","url":"/health","user":null,"userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"}
+{"duration":"7ms","level":"info","message":"Response sent","method":"GET","status":200,"timestamp":"2026-03-03T03:25:55.832Z","url":"/health"}
+{"level":"info","message":"Incoming request","method":"GET","params":{},"query":{},"timestamp":"2026-03-03T03:25:56.612Z","url":"/health","user":null,"userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"}
+{"duration":"2ms","level":"info","message":"Response sent","method":"GET","status":200,"timestamp":"2026-03-03T03:25:56.614Z","url":"/health"}
+{"level":"info","message":"Incoming request","method":"GET","params":{},"query":{},"timestamp":"2026-03-03T03:25:58.964Z","url":"/health","user":null,"userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"}
+{"duration":"1ms","level":"info","message":"Response sent","method":"GET","status":200,"timestamp":"2026-03-03T03:25:58.965Z","url":"/health"}
+{"level":"info","message":"Incoming request","method":"GET","params":{},"query":{},"timestamp":"2026-03-03T03:26:04.047Z","url":"/ds","user":null,"userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"warn","message":"404 Not Found: GET /ds","timestamp":"2026-03-03T03:26:04.048Z","user":null,"userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"}
+{"duration":"2ms","level":"info","message":"Response sent","method":"GET","status":404,"timestamp":"2026-03-03T03:26:04.049Z","url":"/ds"}
+{"level":"info","message":"SIGINT received. Shutting down...","timestamp":"2026-03-03T03:26:16.351Z"}

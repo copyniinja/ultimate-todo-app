@@ -6,12 +6,15 @@ import { Env } from "./config/env";
 import { PrismaClient } from "./generated/prisma/client";
 import { Logger } from "./logger/types";
 import { corsErrorHandler, corsMiddleware } from "./middleware/cors.middleware";
+import { errorHandler } from "./middleware/error.middleware";
+import { notFoundHandler } from "./middleware/notfound.middleware";
 import { rateLimitMiddleware } from "./middleware/rateLimit.middleware";
 import { requestLoggerMiddleware } from "./middleware/requestLogger.middleware";
+
 export function createApp(prisma: PrismaClient, logger: Logger, env: Env) {
   const app = express();
 
-  // middlewares
+  // Middlewares
   app
     .disable("x-powered-by")
     .set("trust proxy", 1)
@@ -30,7 +33,10 @@ export function createApp(prisma: PrismaClient, logger: Logger, env: Env) {
   });
 
   // Global error handler
-  app.use(corsErrorHandler);
+  app
+    .use(notFoundHandler(logger))
+    .use(corsErrorHandler)
+    .use(errorHandler(logger, env));
 
   return app;
 }
