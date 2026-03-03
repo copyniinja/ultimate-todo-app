@@ -79,3 +79,25 @@
 {"level":"info","message":"Server running on port:3000","timestamp":"2026-03-03T01:41:59.822Z"}
 {"level":"info","message":"Incoming request","method":"GET","params":{},"query":{},"timestamp":"2026-03-03T01:42:15.103Z","url":"/health","user":null,"userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"}
 {"duration":"12ms","level":"info","message":"Response sent","method":"GET","status":200,"timestamp":"2026-03-03T01:42:15.114Z","url":"/health"}
+{"level":"info","message":"Prisma connected","timestamp":"2026-03-03T02:42:54.368Z"}
+{"level":"info","message":"Server running on port:3000","timestamp":"2026-03-03T02:42:54.378Z"}
+{"level":"info","message":"Prisma connected","timestamp":"2026-03-03T02:45:38.292Z"}
+{"level":"info","message":"Server running on port:3000","timestamp":"2026-03-03T02:45:38.301Z"}
+{"level":"info","message":"Incoming request","method":"GET","params":{},"query":{},"timestamp":"2026-03-03T02:45:43.217Z","url":"/health","user":null,"userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"}
+{"duration":"11ms","level":"info","message":"Response sent","method":"GET","status":200,"timestamp":"2026-03-03T02:45:43.228Z","url":"/health"}
+{"level":"info","message":"Incoming request","method":"OPTIONS","params":{},"query":{},"timestamp":"2026-03-03T02:45:51.430Z","url":"/health","user":null,"userAgent":"curl/8.5.0"}
+{"level":"warn","message":"CORS blocked origin:https://evil.com","timestamp":"2026-03-03T02:45:51.431Z"}
+{"duration":"1ms","level":"info","message":"Response sent","method":"OPTIONS","status":403,"timestamp":"2026-03-03T02:45:51.431Z","url":"/health"}
+{"level":"info","message":"SIGINT received. Shutting down...","timestamp":"2026-03-03T02:58:26.233Z"}
+{"level":"info","message":"Prisma connected","timestamp":"2026-03-03T02:58:40.477Z"}
+{"level":"info","message":"Server running on port:3000","timestamp":"2026-03-03T02:58:40.488Z"}
+{"level":"info","message":"SIGINT received. Shutting down...","timestamp":"2026-03-03T02:58:55.275Z"}
+{"level":"info","message":"Prisma connected","timestamp":"2026-03-03T02:59:10.861Z"}
+{"level":"info","message":"Server running on port:3000","timestamp":"2026-03-03T02:59:10.870Z"}
+{"level":"info","message":"Incoming request","method":"OPTIONS","params":{},"query":{},"timestamp":"2026-03-03T02:59:18.831Z","url":"/health","user":null,"userAgent":"curl/8.5.0"}
+{"level":"info","message":"Incoming request","method":"OPTIONS","params":{},"query":{},"timestamp":"2026-03-03T02:59:39.630Z","url":"/health","user":null,"userAgent":"curl/8.5.0"}
+{"level":"info","message":"SIGTERM received. Shutting down...","timestamp":"2026-03-03T02:59:46.147Z"}
+{"level":"info","message":"Prisma connected","timestamp":"2026-03-03T02:59:47.041Z"}
+{"level":"info","message":"Server running on port:3000","timestamp":"2026-03-03T02:59:47.052Z"}
+{"level":"info","message":"Incoming request","method":"OPTIONS","params":{},"query":{},"timestamp":"2026-03-03T02:59:53.235Z","url":"/health","user":null,"userAgent":"curl/8.5.0"}
+{"level":"info","message":"SIGINT received. Shutting down...","timestamp":"2026-03-03T03:00:05.092Z"}

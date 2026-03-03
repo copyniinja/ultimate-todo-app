@@ -12,6 +12,7 @@ const envSchema = z.object({
     .enum(["development", "production", "test"])
     .default("development"),
   DATABASE_URL: z.url(),
+  ALLOWED_ORIGINS: z.string().default("http://localhost:5173"),
 });
 
 // Type

@@ -5,6 +5,7 @@ import helmet from "helmet";
 import { Env } from "./config/env";
 import { PrismaClient } from "./generated/prisma/client";
 import { Logger } from "./logger/types";
+import { corsErrorHandler, corsMiddleware } from "./middleware/cors.middleware";
 import { rateLimitMiddleware } from "./middleware/rateLimit.middleware";
 import { requestLoggerMiddleware } from "./middleware/requestLogger.middleware";
 export function createApp(prisma: PrismaClient, logger: Logger, env: Env) {
@@ -16,7 +17,7 @@ export function createApp(prisma: PrismaClient, logger: Logger, env: Env) {
     .set("trust proxy", 1)
     .use(requestLoggerMiddleware(logger))
     .use(helmet())
-    // .use(cors())
+    .use(corsMiddleware(logger, env))
     .use(rateLimitMiddleware())
     .use(express.json())
     .use(express.urlencoded({ extended: true }))
@@ -27,6 +28,9 @@ export function createApp(prisma: PrismaClient, logger: Logger, env: Env) {
   app.get("/health", (_req, res) => {
     res.json({ status: "ok" });
   });
+
+  // Global error handler
+  app.use(corsErrorHandler);
 
   return app;
 }
