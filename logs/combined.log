@@ -48,3 +48,10 @@
 {"level":"info","message":"Incoming request","method":"GET","params":{},"query":{},"timestamp":"2026-03-01T21:01:24.127Z","url":"/health","user":null,"userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"}
 {"duration":"1ms","level":"info","message":"Response sent","method":"GET","status":200,"timestamp":"2026-03-01T21:01:24.128Z","url":"/health"}
 {"level":"info","message":"SIGINT received. Shutting down...","timestamp":"2026-03-01T21:02:04.812Z"}
+{"error":{"clientVersion":"7.4.2","code":"P2010","meta":{"driverAdapterError":{"cause":{"host":"127.0.0.1","kind":"DatabaseNotReachable","port":5432},"name":"DriverAdapterError"}},"name":"PrismaClientKnownRequestError"},"level":"error","message":"prisma connection failed:","timestamp":"2026-03-02T23:54:44.650Z"}
+{"level":"info","message":"Prisma connected","timestamp":"2026-03-03T00:19:20.714Z"}
+{"level":"info","message":"Server running on port:3000","timestamp":"2026-03-03T00:19:20.724Z"}
+{"level":"info","message":"Incoming request","method":"GET","params":{},"query":{},"timestamp":"2026-03-03T00:19:30.814Z","url":"/health","user":null,"userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"}
+{"duration":"15ms","level":"info","message":"Response sent","method":"GET","status":200,"timestamp":"2026-03-03T00:19:30.828Z","url":"/health"}
+{"level":"info","message":"Incoming request","method":"GET","params":{},"query":{},"timestamp":"2026-03-03T00:19:33.435Z","url":"/favicon.ico","user":null,"userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"}
+{"level":"info","message":"SIGINT received. Shutting down...","timestamp":"2026-03-03T00:19:36.828Z"}
