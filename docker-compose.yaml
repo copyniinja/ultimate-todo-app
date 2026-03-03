@@ -5,10 +5,25 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - postgres:/var/lib/postgressql
+      - postgres:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: super_secret
+      POSTGRES_DB: mydb
+
+  backend:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgres://postgres:super_secret@postgres:5432/mydb
+      PORT: 3000
+      NODE_ENV: production
+
+    volumes:
+      - ./logs:/app/logs
 
 volumes:
   postgres:

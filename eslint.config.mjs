@@ -6,7 +6,7 @@ import tseslint from "typescript-eslint";
 
 export default [
   {
-    ignores: ["dist/", "generated/", "node_modules/", "coverage/"],
+    ignores: ["dist/", "src/generated", "node_modules/", "coverage/"],
   },
   { files: ["src/**/*.{js,ts}"] },
   { files: ["**/*.js"], languageOptions: { sourceType: "commonjs" } },
