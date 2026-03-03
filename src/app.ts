@@ -1,15 +1,18 @@
 import compression from "compression";
 import cookieParser from "cookie-parser";
-import express from "express";
+import express, { Response } from "express";
 import helmet from "helmet";
-import { Env } from "./config/env";
+import { Env } from "./configs/env";
 import { PrismaClient } from "./generated/prisma/client";
 import { Logger } from "./logger/types";
-import { corsErrorHandler, corsMiddleware } from "./middleware/cors.middleware";
-import { errorHandler } from "./middleware/error.middleware";
-import { notFoundHandler } from "./middleware/notfound.middleware";
-import { rateLimitMiddleware } from "./middleware/rateLimit.middleware";
-import { requestLoggerMiddleware } from "./middleware/requestLogger.middleware";
+import {
+  corsErrorHandler,
+  corsMiddleware,
+} from "./middlewares/cors.middleware";
+import { errorHandler } from "./middlewares/error.middleware";
+import { notFoundHandler } from "./middlewares/notfound.middleware";
+import { rateLimitMiddleware } from "./middlewares/rateLimit.middleware";
+import { requestLoggerMiddleware } from "./middlewares/requestLogger.middleware";
 
 export function createApp(prisma: PrismaClient, logger: Logger, env: Env) {
   const app = express();
@@ -28,9 +31,9 @@ export function createApp(prisma: PrismaClient, logger: Logger, env: Env) {
     .use(compression({ threshold: 1024 }));
 
   // Health
-  app.get("/health", (_req, res) => {
-    res.json({ status: "ok" });
-  });
+  app.get("/health", healthProbeHandler);
+
+  // API
 
   // Global error handler
   app
@@ -39,4 +42,9 @@ export function createApp(prisma: PrismaClient, logger: Logger, env: Env) {
     .use(errorHandler(logger, env));
 
   return app;
+}
+
+// Health probe handler
+function healthProbeHandler(_req: any, res: Response) {
+  res.json({ status: "ok" });
 }

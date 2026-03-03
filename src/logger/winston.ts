@@ -1,4 +1,4 @@
-import { Env } from "@/config/env";
+import { Env } from "@/configs/env";
 import winston from "winston";
 
 export function createLogger(env: Env) {

@@ -1,5 +1,5 @@
 import { createApp } from "./app";
-import { loadEnv } from "./config/env";
+import { loadEnv } from "./configs/env";
 import { createLogger } from "./logger/winston";
 import { createPrisma } from "./prisma/client";
 
