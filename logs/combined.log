@@ -113,3 +113,32 @@
 {"ip":"::1","level":"warn","message":"404 Not Found: GET /ds","timestamp":"2026-03-03T03:26:04.048Z","user":null,"userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"}
 {"duration":"2ms","level":"info","message":"Response sent","method":"GET","status":404,"timestamp":"2026-03-03T03:26:04.049Z","url":"/ds"}
 {"level":"info","message":"SIGINT received. Shutting down...","timestamp":"2026-03-03T03:26:16.351Z"}
+{"level":"info","message":"Prisma connected","timestamp":"2026-03-04T01:12:16.650Z"}
+{"level":"info","message":"Server running on port:3000","timestamp":"2026-03-04T01:12:16.661Z"}
+{"level":"info","message":"SIGTERM received. Shutting down...","timestamp":"2026-03-04T01:12:39.997Z"}
+{"level":"info","message":"Prisma connected","timestamp":"2026-03-04T01:12:41.050Z"}
+{"level":"info","message":"Server running on port:3000","timestamp":"2026-03-04T01:12:41.060Z"}
+{"level":"info","message":"Incoming request","method":"GET","params":{},"query":{},"timestamp":"2026-03-04T01:12:57.166Z","url":"/health","user":null,"userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"}
+{"duration":"10ms","level":"info","message":"Response sent","method":"GET","status":200,"timestamp":"2026-03-04T01:12:57.176Z","url":"/health"}
+{"level":"info","message":"Incoming request","method":"GET","params":{},"query":{},"timestamp":"2026-03-04T01:12:58.100Z","url":"/favicon.ico","user":null,"userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"warn","message":"404 Not Found: GET /favicon.ico","timestamp":"2026-03-04T01:12:58.125Z","user":null,"userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"}
+{"duration":"25ms","level":"info","message":"Response sent","method":"GET","status":404,"timestamp":"2026-03-04T01:12:58.125Z","url":"/favicon.ico"}
+{"level":"info","message":"Incoming request","method":"POST","params":{},"query":{},"timestamp":"2026-03-04T01:14:12.432Z","url":"/api/v1/users/register","user":null,"userAgent":"PostmanRuntime/7.51.1"}
+{"duration":"200ms","level":"info","message":"Response sent","method":"POST","status":201,"timestamp":"2026-03-04T01:14:12.632Z","url":"/api/v1/users/register"}
+{"level":"info","message":"Incoming request","method":"POST","params":{},"query":{},"timestamp":"2026-03-04T01:18:28.086Z","url":"/api/v1/users/register","user":null,"userAgent":"PostmanRuntime/7.51.1"}
+{"duration":"37ms","level":"info","message":"Response sent","method":"POST","status":201,"timestamp":"2026-03-04T01:18:28.123Z","url":"/api/v1/users/register"}
+{"level":"info","message":"SIGTERM received. Shutting down...","timestamp":"2026-03-04T01:18:54.510Z"}
+{"level":"info","message":"Prisma connected","timestamp":"2026-03-04T01:18:55.428Z"}
+{"level":"info","message":"Server running on port:3000","timestamp":"2026-03-04T01:18:55.438Z"}
+{"level":"info","message":"Incoming request","method":"POST","params":{},"query":{},"timestamp":"2026-03-04T01:18:59.022Z","url":"/api/v1/users/register","user":null,"userAgent":"PostmanRuntime/7.51.1"}
+{"duration":"62ms","level":"info","message":"Response sent","method":"POST","status":201,"timestamp":"2026-03-04T01:18:59.084Z","url":"/api/v1/users/register"}
+{"level":"info","message":"SIGTERM received. Shutting down...","timestamp":"2026-03-04T01:21:56.967Z"}
+{"level":"info","message":"Prisma connected","timestamp":"2026-03-04T01:21:58.041Z"}
+{"level":"info","message":"Server running on port:3000","timestamp":"2026-03-04T01:21:58.051Z"}
+{"level":"info","message":"Incoming request","method":"POST","params":{},"query":{},"timestamp":"2026-03-04T01:22:05.085Z","url":"/api/v1/users/register","user":null,"userAgent":"PostmanRuntime/7.51.1"}
+{"duration":"118ms","level":"info","message":"Response sent","method":"POST","status":201,"timestamp":"2026-03-04T01:22:05.203Z","url":"/api/v1/users/register"}
+{"level":"info","message":"Incoming request","method":"POST","params":{},"query":{},"timestamp":"2026-03-04T01:22:11.371Z","url":"/api/v1/users/register","user":null,"userAgent":"PostmanRuntime/7.51.1"}
+{"duration":"8ms","level":"info","message":"Response sent","method":"POST","status":400,"timestamp":"2026-03-04T01:22:11.379Z","url":"/api/v1/users/register"}
+{"level":"info","message":"SIGTERM received. Shutting down...","timestamp":"2026-03-04T01:24:17.475Z"}
+{"level":"info","message":"Prisma connected","timestamp":"2026-03-04T01:24:18.445Z"}
+{"level":"info","message":"Server running on port:3000","timestamp":"2026-03-04T01:24:18.464Z"}

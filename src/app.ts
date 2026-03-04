@@ -3,6 +3,7 @@ import cookieParser from "cookie-parser";
 import express, { Response } from "express";
 import helmet from "helmet";
 import { Env } from "./configs/env";
+import { UserController } from "./controllers/user.controller";
 import { PrismaClient } from "./generated/prisma/client";
 import { Logger } from "./logger/types";
 import {
@@ -13,33 +14,45 @@ import { errorHandler } from "./middlewares/error.middleware";
 import { notFoundHandler } from "./middlewares/notfound.middleware";
 import { rateLimitMiddleware } from "./middlewares/rateLimit.middleware";
 import { requestLoggerMiddleware } from "./middlewares/requestLogger.middleware";
+import { v1Routes } from "./routes/v1";
 
-export function createApp(prisma: PrismaClient, logger: Logger, env: Env) {
+//  Types
+export type Controllers = { user: UserController };
+export type Dependencies = {
+  env: Env;
+  logger: Logger;
+  prisma: PrismaClient;
+  controllers: Controllers;
+};
+
+// Application
+export function createApp(deps: Dependencies) {
   const app = express();
 
   // Middlewares
   app
     .disable("x-powered-by")
     .set("trust proxy", 1)
-    .use(requestLoggerMiddleware(logger))
+    .use(requestLoggerMiddleware(deps.logger))
     .use(helmet())
-    .use(corsMiddleware(logger, env))
+    .use(corsMiddleware(deps.logger, deps.env))
     .use(rateLimitMiddleware())
     .use(express.json())
     .use(express.urlencoded({ extended: true }))
     .use(cookieParser())
     .use(compression({ threshold: 1024 }));
 
+  // API
+  app.use("/api/v1", v1Routes(deps.controllers));
+
   // Health
   app.get("/health", healthProbeHandler);
 
-  // API
-
   // Global error handler
   app
-    .use(notFoundHandler(logger))
+    .use(notFoundHandler(deps.logger))
     .use(corsErrorHandler)
-    .use(errorHandler(logger, env));
+    .use(errorHandler(deps.logger, deps.env));
 
   return app;
 }
