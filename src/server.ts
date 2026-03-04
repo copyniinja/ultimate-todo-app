@@ -12,6 +12,26 @@ export async function bootstrap() {
   const logger = createLogger(env);
   const prisma = createPrisma(env);
 
+  // Catch unhandled promise rejections
+  process.on("unhandledRejection", (reason, promise) => {
+    logger.error("Unhandled Rejection at Promise:", {
+      reason: reason instanceof Error ? reason.stack : reason,
+      promise,
+    });
+    // exit in production
+    if (env.NODE_ENV === "production") {
+      process.exit(1);
+    }
+  });
+
+  // Catch uncaught synchronous exceptions
+  process.on("uncaughtException", (error) => {
+    logger.error("Uncaught Exception:", {
+      error: error.stack || error.message || error,
+    });
+    process.exit(1);
+  });
+
   // Database connection
   try {
     await prisma.$connect();
@@ -45,12 +65,17 @@ export async function bootstrap() {
 
   // Graceful shutdown
   async function shutdown(signal: string) {
-    logger.info(`${signal} received. Shutting down...`);
-    server.close(() => logger.info("HTTP server closed."));
-    // Database disconnection
-    await prisma.$disconnect();
-    logger.info("Prisma disconnected.");
-    process.exit(0);
+    try {
+      logger.info(`${signal} received. Shutting down...`);
+      server.close(() => logger.info("HTTP server closed."));
+      // Database disconnection
+      await prisma.$disconnect();
+      logger.info("Prisma disconnected.");
+      process.exit(0);
+    } catch (error) {
+      logger.error("Shutdown failed:", { error });
+      process.exit(1);
+    }
   }
 
   // Signal event listeners
