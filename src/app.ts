@@ -6,6 +6,7 @@ import { Env } from "./configs/env";
 import { UserController } from "./controllers/user.controller";
 import { PrismaClient } from "./generated/prisma/client";
 import { Logger } from "./logger/types";
+import { AuthMiddleware } from "./middlewares/auth.middleware";
 import {
   corsErrorHandler,
   corsMiddleware,
@@ -14,15 +15,21 @@ import { errorHandler } from "./middlewares/error.middleware";
 import { notFoundHandler } from "./middlewares/notfound.middleware";
 import { rateLimitMiddleware } from "./middlewares/rateLimit.middleware";
 import { requestLoggerMiddleware } from "./middlewares/requestLogger.middleware";
+import { ValidateMiddleware } from "./middlewares/validate.middleware";
 import { v1Routes } from "./routes/v1";
 
 //  Types
 export type Controllers = { user: UserController };
+export type Middlewares = {
+  auth: AuthMiddleware;
+  validate: ValidateMiddleware;
+};
 export type Dependencies = {
   env: Env;
   logger: Logger;
   prisma: PrismaClient;
   controllers: Controllers;
+  middlewares: Middlewares;
 };
 
 // Application
@@ -43,7 +50,7 @@ export function createApp(deps: Dependencies) {
     .use(compression({ threshold: 1024 }));
 
   // API
-  app.use("/api/v1", v1Routes(deps.controllers));
+  app.use("/api/v1", v1Routes(deps.controllers, deps.middlewares));
 
   // Health
   app.get("/health", healthProbeHandler);

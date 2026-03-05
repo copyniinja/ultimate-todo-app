@@ -2,8 +2,11 @@ import { createApp } from "./app";
 import { loadEnv } from "./configs/env";
 import { createUserController } from "./controllers/user.controller";
 import { createLogger } from "./logger/winston";
+import { createAuthMiddleware } from "./middlewares/auth.middleware";
+import { createValidationMiddleware } from "./middlewares/validate.middleware";
 import { createPrisma } from "./prisma/client";
 import { createUserRepository } from "./repositories/user.repository";
+import { createTokenService } from "./services/token.service";
 import { createUserService } from "./services/user.service";
 
 export async function bootstrap() {
@@ -43,8 +46,15 @@ export async function bootstrap() {
   }
 
   // Composition root - wire repositories, services, and controllers
+  // repos
   const userRepo = createUserRepository(prisma);
+  // services
   const userService = createUserService(userRepo);
+  const tokenService = createTokenService(env, userService);
+  // middlewares
+  const authMiddleware = createAuthMiddleware();
+  const validateMiddleware = createValidationMiddleware(logger);
+  // controllers
   const userController = createUserController(userService);
 
   // Group dependencies
@@ -54,6 +64,10 @@ export async function bootstrap() {
     prisma,
     controllers: {
       user: userController,
+    },
+    middlewares: {
+      auth: authMiddleware,
+      validate: validateMiddleware,
     },
   };
 
