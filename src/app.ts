@@ -1,10 +1,10 @@
+import { PrismaClient } from "@prisma/client";
 import compression from "compression";
 import cookieParser from "cookie-parser";
 import express, { Response } from "express";
 import helmet from "helmet";
 import { Env } from "./configs/env";
 import { UserController } from "./controllers/user.controller";
-import { PrismaClient } from "./generated/prisma/client";
 import { Logger } from "./logger/types";
 import { AuthMiddleware } from "./middlewares/auth.middleware";
 import {

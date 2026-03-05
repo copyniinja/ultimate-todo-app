@@ -4,9 +4,9 @@ import { Request, Response } from "express";
 export function createUserController(userService: UserService) {
   async function register(req: Request, res: Response) {
     try {
-      const { email, name } = req.body;
+      const { email, name, password } = req.body;
 
-      const user = await userService.register({ email, name });
+      const user = await userService.register({ email, name, password });
       console.log(user);
       // Response
       res.status(201).json({ success: true, message: "User registered" });

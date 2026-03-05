@@ -1,4 +1,4 @@
-import { PrismaClient } from "@/generated/prisma/client";
+import { PrismaClient } from "@prisma/client";
 
 export function createUserRepository(prisma: PrismaClient) {
   // Find a user by email
@@ -9,11 +9,12 @@ export function createUserRepository(prisma: PrismaClient) {
     });
   }
   // Create a user
-  async function create(email: string, name: string) {
+  async function create(email: string, name: string, password: string) {
     return prisma.user.create({
       data: {
         email,
         name,
+        password,
       },
     });
   }

@@ -9,7 +9,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: super_secret
-      POSTGRES_DB: mydb
+      POSTGRES_DB: app_db
 
   backend:
     build: .
@@ -18,7 +18,7 @@ services:
     depends_on:
       - postgres
     environment:
-      DATABASE_URL: postgres://postgres:super_secret@postgres:5432/mydb
+      DATABASE_URL: "postgresql://postgres:super_secret@postgres:5432/app_db?schema=public"
       PORT: 3000
       NODE_ENV: production
 
