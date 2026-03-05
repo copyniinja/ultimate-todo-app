@@ -1,5 +1,6 @@
 import { Middlewares } from "@/app";
 import { UserController } from "@/controllers/user.controller";
+import { registerUserSchema } from "@/validators";
 import { Router } from "express";
 
 export function createUserRoutes(
@@ -9,7 +10,11 @@ export function createUserRoutes(
   const router = Router();
   const { validate } = middlewares;
 
-  router.post("/register", userController.register);
+  router.post(
+    "/register",
+    validate(registerUserSchema),
+    userController.register,
+  );
 
   return router;
 }
