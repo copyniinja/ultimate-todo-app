@@ -1,10 +1,10 @@
 import { Middlewares } from "@/app";
-import { UserController } from "@/controllers/user.controller";
-import { registerUserSchema } from "@/validators";
+import { AuthController } from "@/controllers/auth.controller";
+import { loginUserSchema, registerUserSchema } from "@/validators";
 import { Router } from "express";
 
-export function createUserRoutes(
-  userController: UserController,
+export function createAuthRoutes(
+  userController: AuthController,
   middlewares: Middlewares,
 ) {
   const router = Router();
@@ -15,6 +15,8 @@ export function createUserRoutes(
     validate(registerUserSchema),
     userController.register,
   );
+
+  router.post("/login", validate(loginUserSchema), userController.login);
 
   return router;
 }

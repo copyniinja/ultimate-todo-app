@@ -163,3 +163,29 @@
 {"level":"info","message":"Prisma disconnected.","timestamp":"2026-03-05T19:53:00.415Z"}
 {"level":"info","message":"Prisma connected","timestamp":"2026-03-05T19:53:01.142Z"}
 {"level":"info","message":"Server running on port:3000","timestamp":"2026-03-05T19:53:01.152Z"}
+{"level":"info","message":"SIGTERM received. Shutting down...","timestamp":"2026-03-05T19:59:24.997Z"}
+{"level":"info","message":"HTTP server closed.","timestamp":"2026-03-05T19:59:24.998Z"}
+{"level":"info","message":"Prisma disconnected.","timestamp":"2026-03-05T19:59:24.999Z"}
+{"level":"info","message":"Prisma connected","timestamp":"2026-03-05T19:59:26.510Z"}
+{"level":"info","message":"Server running on port:3000","timestamp":"2026-03-05T19:59:26.521Z"}
+{"level":"info","message":"SIGINT received. Shutting down...","timestamp":"2026-03-05T19:59:29.896Z"}
+{"level":"info","message":"HTTP server closed.","timestamp":"2026-03-05T19:59:29.896Z"}
+{"level":"info","message":"Prisma connected","timestamp":"2026-03-05T20:06:50.895Z"}
+{"level":"info","message":"Server running on port:3000","timestamp":"2026-03-05T20:06:50.907Z"}
+{"level":"info","message":"Incoming request","method":"POST","params":{},"query":{},"timestamp":"2026-03-05T20:06:53.912Z","url":"/api/v1/auth/register","user":null,"userAgent":"PostmanRuntime/7.51.1"}
+{"duration":"77ms","level":"info","message":"Response sent","method":"POST","status":400,"timestamp":"2026-03-05T20:06:53.990Z","url":"/api/v1/auth/register"}
+{"level":"info","message":"Incoming request","method":"POST","params":{},"query":{},"timestamp":"2026-03-05T20:06:57.922Z","url":"/api/v1/auth/register","user":null,"userAgent":"PostmanRuntime/7.51.1"}
+{"duration":"10ms","level":"info","message":"Response sent","method":"POST","status":201,"timestamp":"2026-03-05T20:06:57.932Z","url":"/api/v1/auth/register"}
+{"level":"info","message":"Incoming request","method":"POST","params":{},"query":{},"timestamp":"2026-03-05T20:07:05.899Z","url":"/api/v1/auth/register","user":null,"userAgent":"PostmanRuntime/7.51.1"}
+{"duration":"6ms","level":"info","message":"Response sent","method":"POST","status":400,"timestamp":"2026-03-05T20:07:05.905Z","url":"/api/v1/auth/register"}
+{"level":"info","message":"SIGTERM received. Shutting down...","timestamp":"2026-03-05T20:07:44.829Z"}
+{"level":"info","message":"HTTP server closed.","timestamp":"2026-03-05T20:07:44.830Z"}
+{"level":"info","message":"Prisma connected","timestamp":"2026-03-05T20:07:45.867Z"}
+{"level":"info","message":"Server running on port:3000","timestamp":"2026-03-05T20:07:45.877Z"}
+{"level":"info","message":"Incoming request","method":"POST","params":{},"query":{},"timestamp":"2026-03-05T20:07:48.739Z","url":"/api/v1/auth/register","user":null,"userAgent":"PostmanRuntime/7.51.1"}
+{"duration":"36ms","level":"info","message":"Response sent","method":"POST","status":400,"timestamp":"2026-03-05T20:07:48.775Z","url":"/api/v1/auth/register"}
+{"level":"info","message":"SIGTERM received. Shutting down...","timestamp":"2026-03-05T20:07:54.634Z"}
+{"level":"info","message":"HTTP server closed.","timestamp":"2026-03-05T20:07:54.637Z"}
+{"level":"info","message":"Prisma disconnected.","timestamp":"2026-03-05T20:07:54.639Z"}
+{"level":"info","message":"Prisma connected","timestamp":"2026-03-05T20:07:55.425Z"}
+{"level":"info","message":"Server running on port:3000","timestamp":"2026-03-05T20:07:55.439Z"}

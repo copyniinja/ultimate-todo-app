@@ -4,7 +4,7 @@ import cookieParser from "cookie-parser";
 import express, { Response } from "express";
 import helmet from "helmet";
 import { Env } from "./configs/env";
-import { UserController } from "./controllers/user.controller";
+import { AuthController } from "./controllers/auth.controller";
 import { Logger } from "./logger/types";
 import { AuthMiddleware } from "./middlewares/auth.middleware";
 import {
@@ -19,7 +19,7 @@ import { ValidateMiddleware } from "./middlewares/validate.middleware";
 import { v1Routes } from "./routes/v1";
 
 //  Types
-export type Controllers = { user: UserController };
+export type Controllers = { auth: AuthController };
 export type Middlewares = {
   auth: AuthMiddleware;
   validate: ValidateMiddleware;

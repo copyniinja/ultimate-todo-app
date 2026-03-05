@@ -9,3 +9,11 @@ export const registerUserSchema = z.object({
     role: z.enum(["ADMIN", "USER"]).default("USER"),
   }),
 });
+
+// Login user
+export const loginUserSchema = z.object({
+  body: z.object({
+    email: z.email(),
+    password: z.string().min(6),
+  }),
+});

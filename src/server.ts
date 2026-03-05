@@ -1,6 +1,6 @@
 import { createApp } from "./app";
 import { loadEnv } from "./configs/env";
-import { createUserController } from "./controllers/user.controller";
+import { createAuthController } from "./controllers/auth.controller";
 import { createLogger } from "./logger/winston";
 import { createAuthMiddleware } from "./middlewares/auth.middleware";
 import { createValidationMiddleware } from "./middlewares/validate.middleware";
@@ -55,7 +55,7 @@ export async function bootstrap() {
   const authMiddleware = createAuthMiddleware();
   const validateMiddleware = createValidationMiddleware(logger);
   // controllers
-  const userController = createUserController(userService);
+  const authController = createAuthController(userService);
 
   // Group dependencies
   const deps = {
@@ -63,7 +63,7 @@ export async function bootstrap() {
     logger,
     prisma,
     controllers: {
-      user: userController,
+      auth: authController,
     },
     middlewares: {
       auth: authMiddleware,
