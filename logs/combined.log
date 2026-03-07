@@ -189,3 +189,13 @@
 {"level":"info","message":"Prisma disconnected.","timestamp":"2026-03-05T20:07:54.639Z"}
 {"level":"info","message":"Prisma connected","timestamp":"2026-03-05T20:07:55.425Z"}
 {"level":"info","message":"Server running on port:3000","timestamp":"2026-03-05T20:07:55.439Z"}
+{"level":"info","message":"SIGTERM received. Shutting down...","timestamp":"2026-03-05T20:11:16.208Z"}
+{"level":"info","message":"HTTP server closed.","timestamp":"2026-03-05T20:11:16.209Z"}
+{"level":"info","message":"Prisma disconnected.","timestamp":"2026-03-05T20:11:16.212Z"}
+{"level":"info","message":"Prisma connected","timestamp":"2026-03-05T20:11:17.140Z"}
+{"level":"info","message":"Server running on port:3000","timestamp":"2026-03-05T20:11:17.150Z"}
+{"level":"info","message":"SIGTERM received. Shutting down...","timestamp":"2026-03-05T20:14:16.404Z"}
+{"level":"info","message":"HTTP server closed.","timestamp":"2026-03-05T20:14:16.406Z"}
+{"level":"info","message":"Prisma disconnected.","timestamp":"2026-03-05T20:14:16.408Z"}
+{"level":"info","message":"Prisma connected","timestamp":"2026-03-05T20:14:17.671Z"}
+{"level":"info","message":"Server running on port:3000","timestamp":"2026-03-05T20:14:17.697Z"}

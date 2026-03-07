@@ -1,7 +1,11 @@
+import { TokenService } from "@/services/token.service";
 import { UserService } from "@/services/user.service";
 import { Request, Response } from "express";
 
-export function createAuthController(userService: UserService) {
+export function createAuthController(
+  userService: UserService,
+  tokenService: TokenService,
+) {
   async function register(req: Request, res: Response) {
     try {
       const { email, name, password } = req.body;
