@@ -37,3 +37,14 @@ model Todo {
   user        User     @relation(fields: [userId], references: [id])
   userId      Int
 }
+
+model Token {
+  id Int @id @default(autoincrement())
+  hashedToken String 
+  userId Int 
+  family String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  lastUsedAt DateTime @default(now())
+  
+}
