@@ -49,7 +49,7 @@ export async function bootstrap() {
   // Composition root - wire repositories, services, and controllers
   // repos
   const userRepo = createUserRepository(prisma);
-  const tokenRepo = createTokenRepository(prisma)!;
+  const tokenRepo = createTokenRepository(prisma);
   // services
   const userService = createUserService(userRepo);
   const tokenService = createTokenService(env, userService, tokenRepo);

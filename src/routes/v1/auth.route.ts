@@ -1,10 +1,10 @@
 import { Middlewares } from "@/app";
 import { AuthController } from "@/controllers/auth.controller";
-import { loginUserSchema, registerUserSchema } from "@/validators";
 import { Router } from "express";
+import { loginUserSchema, registerUserSchema } from "../../validators";
 
 export function createAuthRoutes(
-  userController: AuthController,
+  authController: AuthController,
   middlewares: Middlewares,
 ) {
   const router = Router();
@@ -13,10 +13,10 @@ export function createAuthRoutes(
   router.post(
     "/register",
     validate(registerUserSchema),
-    userController.register,
+    authController.register,
   );
 
-  router.post("/login", validate(loginUserSchema), userController.login);
+  router.post("/login", validate(loginUserSchema), authController.login);
 
   return router;
 }

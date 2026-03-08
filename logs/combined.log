@@ -199,3 +199,4 @@
 {"level":"info","message":"Prisma disconnected.","timestamp":"2026-03-05T20:14:16.408Z"}
 {"level":"info","message":"Prisma connected","timestamp":"2026-03-05T20:14:17.671Z"}
 {"level":"info","message":"Server running on port:3000","timestamp":"2026-03-05T20:14:17.697Z"}
+{"error":{"clientVersion":"6.19.2","errorCode":"P1001","name":"PrismaClientInitializationError"},"level":"error","message":"prisma connection failed:","timestamp":"2026-03-08T03:48:23.297Z"}

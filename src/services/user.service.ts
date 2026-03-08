@@ -1,4 +1,5 @@
 import { UserRepo } from "@/repositories/user.repository";
+import bcrypt from "bcrypt";
 
 export function createUserService(userRepo: UserRepo) {
   // Register user
@@ -15,14 +16,29 @@ export function createUserService(userRepo: UserRepo) {
     const existing = await userRepo.findByEmail(email);
     if (existing) throw new Error("Email already exists");
     // hash password
+    const hashedPassword = await bcrypt.hash(password, 10);
     // create user
-    const user = await userRepo.create(email, name, password);
+    return userRepo.create(email, name, hashedPassword);
+  }
 
-    return user;
+  async function getUserByEmail(email: string) {
+    return userRepo.findByEmail(email);
+  }
+
+  async function login(email: string, password: string) {
+    // check user exists
+    const user = await userRepo.findByEmail(email);
+    if (!user) throw new Error("User does not exists");
+    // compare password
+    const isValid = await bcrypt.compare(password, user.password);
+    if (!isValid) throw new Error("Invalid credentials");
+    // return user without password
+    return { ...user, password: undefined };
   }
 
   return {
     register,
+    login,
   };
 }
 

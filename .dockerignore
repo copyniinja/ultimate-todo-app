@@ -73,7 +73,7 @@ CHANGELOG.md
 CONTRIBUTING.md
 LICENSE
 docs
-*.md
+
 !README.md  # If you want to keep README
 
 # CI/CD
@@ -83,10 +83,6 @@ docs
 Jenkinsfile
 .circleci
 
-# Prisma
-prisma/migrations/README.md
-prisma/*.db
-prisma/*.db-journal
 
 # Database
 *.db

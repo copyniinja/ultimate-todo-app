@@ -6,7 +6,6 @@
 
 generator client {
   provider = "prisma-client-js"
-
 }
 
 datasource db {
@@ -15,18 +14,19 @@ datasource db {
 }
 
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
-  password String @default("test")
-  role Role @default(USER) 
-  todos Todo[]
+  id       Int     @id @default(autoincrement())
+  email    String  @unique
+  name     String?
+  password String  @default("test")
+  role     Role    @default(USER)
+  todos    Todo[]
 }
 
 enum Role {
   ADMIN
   USER
 }
+
 model Todo {
   id          Int      @id @default(autoincrement())
   title       String
@@ -39,12 +39,12 @@ model Todo {
 }
 
 model Token {
-  id Int @id @default(autoincrement())
-  hashedToken String 
-  userId Int 
-  family String
-  expiresAt DateTime
-  createdAt DateTime @default(now())
-  lastUsedAt DateTime @default(now())
-  
+  id          Int      @id @default(autoincrement())
+  hashedToken String   @unique
+  userId      Int
+  role        Role     @default(USER)
+  family      String
+  expiresAt   DateTime
+  createdAt   DateTime @default(now())
+  lastUsedAt  DateTime @default(now())
 }
