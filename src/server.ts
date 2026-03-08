@@ -54,7 +54,7 @@ export async function bootstrap() {
   const userService = createUserService(userRepo);
   const tokenService = createTokenService(env, userService, tokenRepo);
   // middlewares
-  const authMiddleware = createAuthMiddleware();
+  const authMiddleware = createAuthMiddleware(tokenService);
   const validateMiddleware = createValidationMiddleware(logger);
   // controllers
   const authController = createAuthController(userService, tokenService);

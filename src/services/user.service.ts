@@ -1,5 +1,6 @@
 import { UserRepo } from "@/repositories/user.repository";
 import bcrypt from "bcrypt";
+import { Role } from "./token.service";
 
 export function createUserService(userRepo: UserRepo) {
   // Register user
@@ -7,10 +8,12 @@ export function createUserService(userRepo: UserRepo) {
     email,
     name,
     password,
+    role,
   }: {
     email: string;
     name: string;
     password: string;
+    role: Role;
   }) {
     // check if the user already exists
     const existing = await userRepo.findByEmail(email);
@@ -18,7 +21,7 @@ export function createUserService(userRepo: UserRepo) {
     // hash password
     const hashedPassword = await bcrypt.hash(password, 10);
     // create user
-    return userRepo.create(email, name, hashedPassword);
+    return userRepo.create(email, name, hashedPassword, role);
   }
 
   async function getUserByEmail(email: string) {

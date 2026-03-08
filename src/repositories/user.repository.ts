@@ -1,3 +1,4 @@
+import { Role } from "@/services/token.service";
 import { PrismaClient } from "@prisma/client";
 
 export function createUserRepository(prisma: PrismaClient) {
@@ -9,12 +10,18 @@ export function createUserRepository(prisma: PrismaClient) {
     });
   }
   // Create a user
-  async function create(email: string, name: string, password: string) {
+  async function create(
+    email: string,
+    name: string,
+    password: string,
+    role: Role,
+  ) {
     return prisma.user.create({
       data: {
         email,
         name,
         password,
+        role,
       },
     });
   }

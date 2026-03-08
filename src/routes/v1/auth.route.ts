@@ -8,7 +8,7 @@ export function createAuthRoutes(
   middlewares: Middlewares,
 ) {
   const router = Router();
-  const { validate } = middlewares;
+  const { validate, auth } = middlewares;
 
   router.post(
     "/register",

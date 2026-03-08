@@ -8,9 +8,9 @@ export function createAuthController(
 ) {
   async function register(req: Request, res: Response) {
     try {
-      const { email, name, password } = req.body;
+      const { email, name, password, role } = req.body;
 
-      const user = await userService.register({ email, name, password });
+      const user = await userService.register({ email, name, password, role });
       // Response
       res.status(201).json({ success: true, message: "User registered" });
     } catch (error) {

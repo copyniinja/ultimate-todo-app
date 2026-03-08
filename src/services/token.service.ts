@@ -46,7 +46,7 @@ export function createTokenService(
       return {
         isValid: true,
         userId: Number(payload.sub),
-        role: payload.role as string,
+        role: payload.role as Role,
       };
     } catch (error: any) {
       return {
