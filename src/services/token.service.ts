@@ -1,9 +1,8 @@
 import { Env } from "@/configs/env";
 import { TokenRepo } from "@/repositories/token.repository";
 import { UserService } from "@/services/user.service";
-import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { randomBytes } from "node:crypto";
+import { createHmac, randomBytes } from "node:crypto";
 // types
 export type Role = "ADMIN" | "USER";
 
@@ -15,9 +14,10 @@ export function createTokenService(
 ) {
   // config
   const ACCESS_SECRET = env.JWT_ACCESS_SECRET;
+  const REFRESH_SECRET = env.JWT_REFRESH_SECRET;
   const ACCESS_TTL = env.JWT_ACCESS_TTL_SECONDS;
   const REFRESH_TTL = env.JWT_REFRESH_TTL_SECONDS;
-  const BCRYPT_ROUNDS = 10;
+  // const BCRYPT_ROUNDS = 10;
 
   // generate jwt access token
   function generateAccessToken(userId: number, role: Role) {
@@ -27,6 +27,7 @@ export function createTokenService(
     };
     return jwt.sign(payload, ACCESS_SECRET, {
       algorithm: "HS256",
+      expiresIn: ACCESS_TTL,
     });
   }
 
@@ -58,13 +59,10 @@ export function createTokenService(
   }
 
   // hash refresh token
-  async function hashRefreshToken(token: string) {
-    return bcrypt.hash(token, BCRYPT_ROUNDS);
+  function hashRefreshToken(token: string) {
+    return createHmac("sha256", REFRESH_SECRET).update(token).digest("hex");
   }
-  // compare refresh token
-  async function compareRefreshToken(plainToken: string, hashedToken: string) {
-    return bcrypt.compare(plainToken, hashedToken);
-  }
+
   // generate random cryptographically secure refresh token
   function generateRefreshToken() {
     return randomBytes(40).toString("hex");
@@ -74,7 +72,7 @@ export function createTokenService(
   async function createTokenPair(userId: number, role: Role) {
     const accessToken = generateAccessToken(userId, role);
     const rawRefreshToken = generateRefreshToken();
-    const hashedRefreshToken = await hashRefreshToken(rawRefreshToken);
+    const hashedRefreshToken = hashRefreshToken(rawRefreshToken);
     const family = randomBytes(16).toString("hex");
     const now = new Date();
 
@@ -98,18 +96,18 @@ export function createTokenService(
   async function refreshToken(oldRefreshToken: string) {
     // find existing record by hash
     const record = await tokenRepo.findByHashedToken(
-      await hashRefreshToken(oldRefreshToken),
+      hashRefreshToken(oldRefreshToken),
     );
-    if (!record) return null;
+    if (!record) throw new Error("Invalid refresh token");
     const now = new Date();
     // token expired?
     if (now > record.expiresAt) {
       await tokenRepo.deleteByFamily(record.family);
-      return null;
+      throw new Error("Refresh token expired");
     }
     // Rotate issue new token
     const newRawRefreshToken = generateRefreshToken();
-    const newHashedRefreshToken = await hashRefreshToken(newRawRefreshToken);
+    const newHashedRefreshToken = hashRefreshToken(newRawRefreshToken);
 
     // update token
     await tokenRepo.updateHashedToken(record.hashedToken, {
@@ -123,12 +121,13 @@ export function createTokenService(
       newAccessToken,
       refreshToken: newRawRefreshToken,
       expiresIn: ACCESS_TTL,
+      expiresInRefresh: REFRESH_TTL,
     };
   }
 
   // revoke refresh token
   async function revokeRefreshToken(token: string) {
-    const hash = await hashRefreshToken(token);
+    const hash = hashRefreshToken(token);
     await tokenRepo.deleteByHashedToken(hash);
   }
 

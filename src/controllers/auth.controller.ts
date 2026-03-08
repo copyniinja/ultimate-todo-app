@@ -53,9 +53,39 @@ export function createAuthController(
       });
     }
   }
+
+  async function refresh(req: Request, res: Response) {
+    const oldRefreshToken = req.cookies.refreshToken as string;
+    if (!oldRefreshToken) {
+      return res
+        .status(401)
+        .json({ success: false, message: "Refresh token missing" });
+    }
+    try {
+      const { newAccessToken, refreshToken, expiresIn, expiresInRefresh } =
+        await tokenService.refreshToken(oldRefreshToken);
+
+      res.cookie("refreshToken", refreshToken, {
+        httpOnly: true,
+        expires: new Date(new Date().getTime() + expiresInRefresh * 1000),
+        sameSite: "strict",
+      });
+      return res
+        .status(200)
+        .json({ success: true, accessToken: newAccessToken, expiresIn });
+    } catch (error) {
+      res.clearCookie("refreshToken");
+      return res.status(401).json({
+        success: false,
+        message: "Invalid refresh token",
+        error: (error as Error).message,
+      });
+    }
+  }
   return {
     register,
     login,
+    refresh,
   };
 }
 
