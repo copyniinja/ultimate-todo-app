@@ -1,3 +1,4 @@
+import { MailerService } from "@/services/mailer.service";
 import { TokenService } from "@/services/token.service";
 import { UserService } from "@/services/user.service";
 import { Request, Response } from "express";
@@ -5,12 +6,18 @@ import { Request, Response } from "express";
 export function createAuthController(
   userService: UserService,
   tokenService: TokenService,
+  mailerService: MailerService,
 ) {
   async function register(req: Request, res: Response) {
     try {
       const { email, name, password, role } = req.body;
 
       const user = await userService.register({ email, name, password, role });
+      // Send welcome mail
+      await mailerService.sendWelcomeEmail({
+        email: user.email,
+        name: user.email,
+      });
       // Response
       res.status(201).json({ success: true, message: "User registered" });
     } catch (error) {

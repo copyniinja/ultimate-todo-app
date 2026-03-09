@@ -7,6 +7,7 @@ import { createValidationMiddleware } from "./middlewares/validate.middleware";
 import { createPrisma } from "./prisma/client";
 import { createTokenRepository } from "./repositories/token.repository";
 import { createUserRepository } from "./repositories/user.repository";
+import { createMailerService } from "./services/mailer.service";
 import { createTokenService } from "./services/token.service";
 import { createUserService } from "./services/user.service";
 
@@ -52,12 +53,17 @@ export async function bootstrap() {
   const tokenRepo = createTokenRepository(prisma);
   // services
   const userService = createUserService(userRepo);
-  const tokenService = createTokenService(env, userService, tokenRepo);
+  const tokenService = createTokenService(env, tokenRepo);
+  const mailerService = createMailerService(env, logger);
   // middlewares
   const authMiddleware = createAuthMiddleware(tokenService);
   const validateMiddleware = createValidationMiddleware(logger);
   // controllers
-  const authController = createAuthController(userService, tokenService);
+  const authController = createAuthController(
+    userService,
+    tokenService,
+    mailerService,
+  );
 
   // Group dependencies
   const deps = {

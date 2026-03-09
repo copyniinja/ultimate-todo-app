@@ -17,6 +17,16 @@ const envSchema = z.object({
   JWT_REFRESH_SECRET: z.string(),
   JWT_ACCESS_TTL_SECONDS: z.string().default("900").transform(Number),
   JWT_REFRESH_TTL_SECONDS: z.string().default("604800").transform(Number),
+  MAILER_GMAIL_USER: z.string(),
+  MAILER_APP_PASSWORD: z.string(),
+  MAILER_EMAIL_PROVIDER: z.string(),
+  POSTMARK_SERVER_TOKEN: z.string(),
+  RESEND_API_KEY: z.string(),
+  MAILGUN_API_KEY: z.string(),
+  MAILGUN_DOMAIN: z.string(),
+  SENDGRID_API_KEY: z.string(),
+  EMAIL_FROM_NAME: z.string(),
+  EMAIL_FROM_EMAIL: z.string(),
 });
 
 // Type

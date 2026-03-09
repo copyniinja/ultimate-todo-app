@@ -1,17 +1,12 @@
 import { Env } from "@/configs/env";
 import { TokenRepo } from "@/repositories/token.repository";
-import { UserService } from "@/services/user.service";
 import jwt from "jsonwebtoken";
 import { createHmac, randomBytes } from "node:crypto";
 // types
 export type Role = "ADMIN" | "USER";
 
 // Create token service
-export function createTokenService(
-  env: Env,
-  userService: UserService,
-  tokenRepo: TokenRepo,
-) {
+export function createTokenService(env: Env, tokenRepo: TokenRepo) {
   // config
   const ACCESS_SECRET = env.JWT_ACCESS_SECRET;
   const REFRESH_SECRET = env.JWT_REFRESH_SECRET;
