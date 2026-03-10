@@ -1,6 +1,7 @@
 import { MailerService } from "@/services/mailer.service";
 import { TokenService } from "@/services/token.service";
 import { UserService } from "@/services/user.service";
+import { getErrorMessage } from "@/utils/error.util";
 import { Request, Response } from "express";
 
 export function createAuthController(
@@ -14,16 +15,16 @@ export function createAuthController(
 
       const user = await userService.register({ email, name, password, role });
       // Send welcome mail
-      await mailerService.sendWelcomeEmail({
-        email: user.email,
-        name: user.email,
-      });
+      await mailerService
+        .sendWelcomeEmail({
+          email: user.email,
+          name: user.email,
+        })
+        .catch((err) => console.error(err));
       // Response
       res.status(201).json({ success: true, message: "User registered" });
     } catch (error) {
-      res
-        .status(400)
-        .json({ success: false, message: (error as Error).message });
+      res.status(400).json({ success: false, message: getErrorMessage(error) });
     }
   }
 
@@ -56,7 +57,7 @@ export function createAuthController(
     } catch (error) {
       res.status(401).json({
         success: false,
-        message: (error as Error).message,
+        message: getErrorMessage(error),
       });
     }
   }
@@ -85,7 +86,7 @@ export function createAuthController(
       return res.status(401).json({
         success: false,
         message: "Invalid refresh token",
-        error: (error as Error).message,
+        error: getErrorMessage(error),
       });
     }
   }
