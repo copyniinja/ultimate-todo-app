@@ -6,29 +6,22 @@ export interface Todo {
   priority?: "LOW" | "MEDIUM" | "HIGH" | "URGENT";
   userId?: string;
   dueDate?: Date;
+}
+export interface TodoRecord extends Todo {
   completedAt?: Date;
   createdAt?: Date;
   updatedAt?: Date;
   lastNotified?: Date;
-  isNotified?: boolean;
-
-  // id              String    @id @default(cuid())
-  // title           String    @db.VarChar(255)
-  // description     String?   @db.Text
-  // completed       Boolean   @default(false)
-  // priority        Priority  @default(MEDIUM)
-
-  // dueDate         DateTime?
-  // completedAt     DateTime?
-  // createdAt       DateTime  @default(now())
-  // updatedAt       DateTime  @updatedAt @default(now())
-  // lastNotifiedAt  DateTime?
-  // isNotified      Boolean   @default(false)
-
-  // user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  // userId          String
 }
-export interface TodoRepo {}
+export interface TodoRepo {
+  create(todo: Todo): Promise<TodoRecord>;
+  get(todoId: string): Promise<TodoRecord | null>;
+  getAll(userId: string): Promise<TodoRecord[]>;
+  update(todoId: string, todo: Partial<Todo>): Promise<TodoRecord>;
+  delete(todoId: string): Promise<void>;
+  markAsCompleted(todoId: string): Promise<void>;
+  markAsNotified(todoId: string): Promise<void>;
+}
 
 // Todo repository
-export function createTodoRepository() {}
+export function createTodoRepository(): TodoRepo | any {}

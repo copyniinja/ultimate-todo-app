@@ -26,42 +26,42 @@ enum Priority {
 }
 
 model User {
-  id            String    @id @default(cuid()) 
-  email         String    @unique
-  name          String?
-  password      String
-  role          Role      @default(USER)
-  todos         Todo[]
-  timezone      String    @default("UTC")
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt  @default(now())
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  password  String
+  role      Role     @default(USER)
+  todos     Todo[]
+  timezone  String   @default("UTC")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
 
   @@index([email])
 }
 
 model Todo {
-  id              String    @id @default(cuid())
-  title           String    @db.VarChar(255)
-  description     String?   @db.Text
-  completed       Boolean   @default(false)
-  priority        Priority  @default(MEDIUM)
-  
-  dueDate         DateTime?
-  completedAt     DateTime?
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt @default(now())
-  lastNotifiedAt  DateTime?
-  isNotified      Boolean   @default(false)
+  id          String   @id @default(cuid())
+  title       String   @db.VarChar(255)
+  description String?  @db.Text
+  completed   Boolean  @default(false)
+  priority    Priority @default(MEDIUM)
 
-  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId          String
+  dueDate        DateTime?
+  completedAt    DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @default(now()) @updatedAt
+  lastNotifiedAt DateTime?
+
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
 
   @@index([userId])
-  @@index([dueDate]) 
+  @@index([dueDate])
 }
 
 model Token {
-  id                  String   @id @default(cuid())
+  id          String   @id @default(cuid())
   hashedToken String   @unique
   userId      String
   role        Role     @default(USER)
