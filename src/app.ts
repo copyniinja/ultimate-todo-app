@@ -5,6 +5,7 @@ import express, { Response } from "express";
 import helmet from "helmet";
 import { Env } from "./configs/env";
 import { AuthController } from "./controllers/auth.controller";
+import { TodoController } from "./controllers/todo.controller";
 import { Logger } from "./logger/types";
 import { AuthMiddleware } from "./middlewares/auth.middleware";
 import {
@@ -19,7 +20,7 @@ import { ValidateMiddleware } from "./middlewares/validate.middleware";
 import { v1Routes } from "./routes/v1";
 
 //  Types
-export type Controllers = { auth: AuthController };
+export type Controllers = { auth: AuthController; todo: TodoController };
 export type Middlewares = {
   auth: AuthMiddleware;
   validate: ValidateMiddleware;

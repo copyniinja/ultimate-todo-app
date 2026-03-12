@@ -1,3 +1,5 @@
+import { PrismaClient } from "@prisma/client";
+
 // Types
 export interface Todo {
   title: string;
@@ -24,4 +26,4 @@ export interface TodoRepo {
 }
 
 // Todo repository
-export function createTodoRepository(): TodoRepo | any {}
+export function createTodoRepository(prisma: PrismaClient): TodoRepo | any {}
