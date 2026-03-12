@@ -15,7 +15,7 @@ export function createTokenService(env: Env, tokenRepo: TokenRepo) {
   // const BCRYPT_ROUNDS = 10;
 
   // generate jwt access token
-  function generateAccessToken(userId: number, role: Role) {
+  function generateAccessToken(userId: string, role: Role) {
     const payload = {
       sub: userId,
       role,
@@ -64,7 +64,7 @@ export function createTokenService(env: Env, tokenRepo: TokenRepo) {
   }
 
   // create token pair
-  async function createTokenPair(userId: number, role: Role) {
+  async function createTokenPair(userId: string, role: Role) {
     const accessToken = generateAccessToken(userId, role);
     const rawRefreshToken = generateRefreshToken();
     const hashedRefreshToken = hashRefreshToken(rawRefreshToken);
