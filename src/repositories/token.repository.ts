@@ -1,13 +1,13 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, Role } from "@prisma/client";
 
 export interface RefreshToken {
   hashedToken: string;
-  userId: number;
+  userId: string;
   family: string;
   expiresAt: Date;
   lastUsedAt: Date;
   createdAt: Date;
-  role: "ADMIN" | "USER";
+  role: Role;
 }
 export interface TokenRepo {
   create(record: RefreshToken): Promise<void>;
@@ -18,7 +18,7 @@ export interface TokenRepo {
   ): Promise<void>;
   deleteByHashedToken(hashedToken: string): Promise<void>;
   deleteByFamily(family: string): Promise<void>;
-  deleteAllByUserId(userId: number): Promise<void>;
+  deleteAllByUserId(userId: string): Promise<void>;
 }
 
 export function createTokenRepository(prisma: PrismaClient): TokenRepo {
@@ -55,7 +55,7 @@ export function createTokenRepository(prisma: PrismaClient): TokenRepo {
     await prisma.token.deleteMany({ where: { family } });
   }
 
-  async function deleteAllByUserId(userId: number) {
+  async function deleteAllByUserId(userId: string) {
     await prisma.token.deleteMany({
       where: {
         userId,
