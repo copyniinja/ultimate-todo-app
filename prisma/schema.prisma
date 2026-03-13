@@ -52,7 +52,6 @@ model Todo {
   updatedAt      DateTime  @default(now()) @updatedAt
   lastNotifiedAt DateTime?
 
-
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String
 

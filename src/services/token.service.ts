@@ -41,7 +41,7 @@ export function createTokenService(env: Env, tokenRepo: TokenRepo) {
       }
       return {
         isValid: true,
-        userId: Number(payload.sub),
+        userId: payload.sub,
         role: payload.role as Role,
       };
     } catch (error: any) {
