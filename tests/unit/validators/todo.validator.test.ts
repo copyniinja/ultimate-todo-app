@@ -12,22 +12,25 @@ describe("Todo validator", () => {
           dueDate: new Date().toISOString(),
         },
       };
-      const result = createTodoSchema.safeParse(validTodo);
-      expect(result.success).toBe(true);
+
+      const result = createTodoSchema.parse(validTodo);
+
+      expect(result.body.title).toBe(validTodo.body.title);
+      expect(result.body.priority).toBe(Priority.HIGH);
     });
 
-    it("should validate with only required fields", () => {
+    it("should validate with only required fields and apply defaults", () => {
       const minimalTodo = {
         body: {
           title: "Buy groceries",
         },
       };
-      const result = createTodoSchema.safeParse(minimalTodo);
-      expect(result.success).toBe(true);
-      // Check if default values are applied
-      if (result.success) {
-        expect(result.data.body.priority).toBe(Priority.MEDIUM);
-      }
+
+      const result = createTodoSchema.parse(minimalTodo);
+
+      // No if-block needed. Linter is happy.
+      expect(result.body.priority).toBe(Priority.MEDIUM);
+      expect(result.body.completed).toBe(false);
     });
 
     it("should reject if title is missing", () => {
@@ -36,6 +39,7 @@ describe("Todo validator", () => {
           description: "Missing title",
         },
       };
+
       const result = createTodoSchema.safeParse(invalidData);
       expect(result.success).toBe(false);
     });
@@ -46,6 +50,7 @@ describe("Todo validator", () => {
           title: "a".repeat(256),
         },
       };
+
       const result = createTodoSchema.safeParse(invalidData);
       expect(result.success).toBe(false);
     });
@@ -54,9 +59,10 @@ describe("Todo validator", () => {
       const invalidData = {
         body: {
           title: "Invalid Priority",
-          priority: "SUPER_URGENT", // Not in enum
+          priority: "SUPER_URGENT",
         },
       };
+
       const result = createTodoSchema.safeParse(invalidData);
       expect(result.success).toBe(false);
     });
@@ -68,6 +74,7 @@ describe("Todo validator", () => {
           dueDate: "20-05-2024",
         },
       };
+
       const result = createTodoSchema.safeParse(invalidData);
       expect(result.success).toBe(false);
     });
