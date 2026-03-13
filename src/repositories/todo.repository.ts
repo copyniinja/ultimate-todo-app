@@ -61,7 +61,10 @@ export function createTodoRepository(prisma: PrismaClient): TodoRepo {
       where: {
         id: todoId,
       },
-      data: todo,
+      data: {
+        ...todo,
+        dueDate: todo.dueDate ?? undefined,
+      },
     });
   }
   // remove a todo
