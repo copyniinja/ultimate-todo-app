@@ -40,6 +40,16 @@ export function createTodoService(todoRepo: TodoRepo) {
     await todoRepo.markAsCompleted(todoId);
   }
 
+  async function notifyTodo(todoId: string, userId: string): Promise<void> {
+    const todo = await getTodo(todoId, userId);
+
+    if (todo.lastNotifiedAt) {
+      return; // Idempotency: don't do anything if already completed
+    }
+
+    await todoRepo.markAsNotified(todoId);
+  }
+
   async function deleteTodo(todoId: string, userId: string): Promise<void> {
     await getTodo(todoId, userId); // Ensure it exists and user owns it
     await todoRepo.remove(todoId);
@@ -52,6 +62,7 @@ export function createTodoService(todoRepo: TodoRepo) {
     completeTodo,
     deleteTodo,
     getUserTodos: todoRepo.getAll,
+    notifyTodo,
   };
 }
 

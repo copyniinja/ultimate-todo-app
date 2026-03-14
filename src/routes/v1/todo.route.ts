@@ -17,6 +17,7 @@ export function createTodoRoutes(
   router.use(auth.authenticate()).use(auth.authorization(["USER"]));
 
   router.post("/", validate(createTodoSchema), todoController.create);
+  router.get("/", validate(createTodoSchema), todoController.getAll);
   router.get("/:id", validate(todoIdSchema), todoController.getOne);
   router.put("/:id", validate(updateTodoSchema), todoController.update);
   router.delete("/:id", validate(todoIdSchema), todoController.remove);
@@ -24,6 +25,11 @@ export function createTodoRoutes(
     "/:id/complete",
     validate(todoIdSchema),
     todoController.markCompleted,
+  );
+  router.patch(
+    "/:id/notify",
+    validate(todoIdSchema),
+    todoController.markNotified,
   );
 
   return router;

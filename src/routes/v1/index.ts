@@ -8,7 +8,7 @@ export function v1Routes(controllers: Controllers, middlewares: Middlewares) {
 
   // Mount resource specific routers
   router.use("/auth", createAuthRoutes(controllers.auth, middlewares));
-  router.use("/todo", createTodoRoutes(controllers.todo, middlewares));
+  router.use("/todos", createTodoRoutes(controllers.todo, middlewares));
 
   return router;
 }
