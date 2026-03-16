@@ -16,18 +16,43 @@ services:
       POSTGRES_PASSWORD: super_secret
       POSTGRES_DB: app_db
 
+  redis-stack:
+    image: redis/redis-stack:latest
+    restart: always
+    ports:
+      - "6379:6379"
+      - "8001:8001"
+    volumes:
+      - redis-data:/data
+    command: >
+      redis-server
+      --requirepass ${REDIS_PASSWORD}
+      --appendonly yes
+      --maxmemory 512mb
+      --maxmemory-policy allkeys-lru
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD}", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
   backend:
     build: .
     ports:
       - "3000:3000"
     depends_on:
+      redis-stack:
+        condition: service_healthy
       postgres:
         condition: service_healthy
     env_file:
       - .env
-
+    environment:
+      REDIS_URL: redis://default:${REDIS_PASSWORD}@redis-stack:6379
     volumes:
       - ./logs:/app/logs
 
 volumes:
   postgres:
+  redis-data:

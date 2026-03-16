@@ -27,6 +27,8 @@ const envSchema = z.object({
   SENDGRID_API_KEY: z.string(),
   EMAIL_FROM_NAME: z.string(),
   EMAIL_FROM_EMAIL: z.string(),
+  REDIS_URL: z.string(),
+  REDIS_PASSWORD: z.string(),
 });
 
 // Type

@@ -6,6 +6,7 @@ import { createLogger } from "./logger/winston";
 import { createAuthMiddleware } from "./middlewares/auth.middleware";
 import { createValidationMiddleware } from "./middlewares/validate.middleware";
 import { createPrisma } from "./prisma/client";
+import { createRedis } from "./redis/client";
 import { createTodoRepository } from "./repositories/todo.repository";
 import { createTokenRepository } from "./repositories/token.repository";
 import { createUserRepository } from "./repositories/user.repository";
@@ -19,6 +20,7 @@ export async function bootstrap() {
   const env = loadEnv();
   const logger = createLogger(env);
   const prisma = createPrisma(env);
+  const redis = createRedis(env, logger);
 
   // Catch unhandled promise rejections
   process.on("unhandledRejection", (reason, promise) => {
@@ -47,6 +49,15 @@ export async function bootstrap() {
     logger.info("Prisma connected");
   } catch (error) {
     logger.error("prisma connection failed:", { error });
+    process.exit(1);
+  }
+
+  // redis connection
+  try {
+    await redis.ping();
+    logger.info("Redis connected");
+  } catch (err) {
+    logger.error("Redis connection failed", { err });
     process.exit(1);
   }
 
