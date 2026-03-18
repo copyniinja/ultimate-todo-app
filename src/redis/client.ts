@@ -4,7 +4,7 @@ import IORedis from "ioredis";
 
 let redisClient: IORedis | null = null;
 
-export function createRedis(env: Env, logger: Logger): IORedis | any {
+export function createRedis(env: Env, logger: Logger): IORedis {
   if (redisClient) return redisClient;
 
   const url = new URL(env.REDIS_URL);

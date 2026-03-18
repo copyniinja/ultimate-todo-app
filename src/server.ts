@@ -10,6 +10,7 @@ import { createRedis } from "./redis/client";
 import { createTodoRepository } from "./repositories/todo.repository";
 import { createTokenRepository } from "./repositories/token.repository";
 import { createUserRepository } from "./repositories/user.repository";
+import { createCacheService } from "./services/cache.service";
 import { createMailerService } from "./services/mailer.service";
 import { createTodoService } from "./services/todo.service";
 import { createTokenService } from "./services/token.service";
@@ -71,6 +72,7 @@ export async function bootstrap() {
   const tokenService = createTokenService(env, tokenRepo);
   const mailerService = createMailerService(env, logger);
   const todoService = createTodoService(todoRepo);
+  const cacheService = createCacheService(redis, logger);
   // middlewares
   const authMiddleware = createAuthMiddleware(tokenService);
   const validateMiddleware = createValidationMiddleware(logger);
@@ -111,6 +113,8 @@ export async function bootstrap() {
       // Database disconnection
       await prisma.$disconnect();
       logger.info("Prisma disconnected.");
+      await redis.quit();
+      logger.info("Redis disconnected.");
       process.exit(0);
     } catch (error) {
       logger.error("Shutdown failed:", { error });
