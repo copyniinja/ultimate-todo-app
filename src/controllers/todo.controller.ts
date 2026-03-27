@@ -1,8 +1,13 @@
+import { CacheService } from "@/services/cache.service";
 import { TodoService } from "@/services/todo.service";
 import { getErrorMessage } from "@/utils/error.util";
-import { Request, Response } from "express"; // or your framework of choice
+import { Request, Response } from "express";
 
-export function createTodoController(todoService: TodoService) {
+const VERSION = `v1`;
+export function createTodoController(
+  todoService: TodoService,
+  cacheService: CacheService,
+) {
   async function create(req: Request, res: Response) {
     try {
       const userId = req.userId;
@@ -14,6 +19,11 @@ export function createTodoController(todoService: TodoService) {
         });
       }
       const todo = await todoService.createTodo(userId, req.body);
+      if (todo.id) {
+        await cacheService.invalidate(
+          `api:todos:u:${userId}:/api/${VERSION}/todos`,
+        );
+      }
 
       return res.status(201).json(todo);
     } catch (error) {
@@ -55,6 +65,11 @@ export function createTodoController(todoService: TodoService) {
       }
 
       const updatedTodo = await todoService.updateTodo(id, userId, req.body);
+      if (updatedTodo.id) {
+        await cacheService.invalidate(
+          `api:todos:u:${userId}:/api/${VERSION}/todos/${updatedTodo.id}`,
+        );
+      }
       return res.status(200).json(updatedTodo);
     } catch (error) {
       return res
@@ -75,6 +90,11 @@ export function createTodoController(todoService: TodoService) {
       }
 
       await todoService.completeTodo(id, userId);
+
+      await cacheService.invalidate(
+        `api:todos:u:${userId}:/api/${VERSION}/todos/${id}`,
+      );
+
       return res.status(204).send();
     } catch (error) {
       return res
@@ -114,6 +134,9 @@ export function createTodoController(todoService: TodoService) {
       }
 
       await todoService.deleteTodo(id, userId);
+      await cacheService.invalidate(
+        `api:todos:u:${userId}:/api/${VERSION}/todos/${id}`,
+      );
       return res.status(204).send();
     } catch (error) {
       return res

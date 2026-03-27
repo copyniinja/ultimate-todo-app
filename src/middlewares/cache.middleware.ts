@@ -53,7 +53,8 @@ function cacheHandler(
       const cached = await cacheService.get(cacheKey);
       if (cached !== null) {
         res.setHeader("X-Cache", "HIT");
-        return res.status(200).json(cached);
+        res.setHeader("Content-Type", "application/json");
+        return res.send(cached);
       }
       // Stampede protection (lock)
       const isLocked = await cacheService.get(lockKey);
@@ -76,8 +77,11 @@ function cacheHandler(
         cacheService.invalidate(lockKey).catch(() => {});
         return orginalSend.call(this, body);
       };
+      // to controller
+      next();
     } catch (err) {
       console.error(err);
+      next();
     }
   };
 }
@@ -90,11 +94,12 @@ function buildCacheKey(
 ) {
   let key = `${CACHE_PREFIX}${prefix}`;
   if (isPrivate && userId) {
-    key += `user:${userId}:`;
+    key += `:u:${userId}:`;
   } else {
-    key += "public:";
+    key += ":public:";
   }
-  return key;
+
+  return key + req.originalUrl;
 }
 
 export type CacheMiddleware = ReturnType<typeof createCacheMiddleware>;

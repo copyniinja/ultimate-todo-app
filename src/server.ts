@@ -85,7 +85,7 @@ export async function bootstrap() {
     tokenService,
     mailerService,
   );
-  const todoController = createTodoController(todoService);
+  const todoController = createTodoController(todoService, cacheService);
 
   // Group dependencies
   const deps = {
