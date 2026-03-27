@@ -11,14 +11,28 @@ export function createTodoRoutes(
   todoController: TodoController,
   middlewares: Middlewares,
 ) {
-  const { validate, auth } = middlewares;
+  const {
+    validate,
+    auth,
+    cache: { protectedCache, publicCache },
+  } = middlewares;
   const router = Router();
 
   router.use(auth.authenticate()).use(auth.authorization(["USER"]));
 
   router.post("/", validate(createTodoSchema), todoController.create);
-  router.get("/", validate(createTodoSchema), todoController.getAll);
-  router.get("/:id", validate(todoIdSchema), todoController.getOne);
+  router.get(
+    "/",
+    validate(createTodoSchema),
+    protectedCache({ keyPrefix: "todos" }),
+    todoController.getAll,
+  );
+  router.get(
+    "/:id",
+    validate(todoIdSchema),
+    protectedCache({ keyPrefix: "todo", ttl: 120 }),
+    todoController.getOne,
+  );
   router.put("/:id", validate(updateTodoSchema), todoController.update);
   router.delete("/:id", validate(todoIdSchema), todoController.remove);
   router.patch(

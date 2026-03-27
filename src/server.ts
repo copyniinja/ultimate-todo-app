@@ -4,6 +4,7 @@ import { loadEnv } from "./configs/env";
 import { createAuthController } from "./controllers/auth.controller";
 import { createLogger } from "./logger/winston";
 import { createAuthMiddleware } from "./middlewares/auth.middleware";
+import { createCacheMiddleware } from "./middlewares/cache.middleware";
 import { createValidationMiddleware } from "./middlewares/validate.middleware";
 import { createPrisma } from "./prisma/client";
 import { createRedis } from "./redis/client";
@@ -76,6 +77,8 @@ export async function bootstrap() {
   // middlewares
   const authMiddleware = createAuthMiddleware(tokenService);
   const validateMiddleware = createValidationMiddleware(logger);
+  const cacheMiddleware = createCacheMiddleware(cacheService);
+
   // controllers
   const authController = createAuthController(
     userService,
@@ -96,6 +99,7 @@ export async function bootstrap() {
     middlewares: {
       auth: authMiddleware,
       validate: validateMiddleware,
+      cache: cacheMiddleware,
     },
   };
 

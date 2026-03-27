@@ -8,6 +8,7 @@ import { AuthController } from "./controllers/auth.controller";
 import { TodoController } from "./controllers/todo.controller";
 import { Logger } from "./logger/types";
 import { AuthMiddleware } from "./middlewares/auth.middleware";
+import { CacheMiddleware } from "./middlewares/cache.middleware";
 import {
   corsErrorHandler,
   corsMiddleware,
@@ -24,6 +25,7 @@ export type Controllers = { auth: AuthController; todo: TodoController };
 export type Middlewares = {
   auth: AuthMiddleware;
   validate: ValidateMiddleware;
+  cache: CacheMiddleware;
 };
 export type Dependencies = {
   env: Env;
